@@ -1,7 +1,6 @@
 'use client'
 
-import { useRef, useState } from 'react'
-import { STORES_BKK, STORES_OTHER, ALL_STORES } from '@/lib/stores'
+import { useEffect, useRef, useState } from 'react'
 import SuccessMessage from './SuccessMessage'
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -28,6 +27,14 @@ interface SubmittedData {
   preferredDate: string
 }
 
+interface Store {
+  id: string;
+  branch: string;
+  province: string;
+  display: string;
+  region: "bkk" | "other";
+}
+
 const inputClass =
   'w-full border border-[#e0e0e0] rounded-none px-4 py-3 text-black text-base ' +
   'hover:border-[#999999] focus:border-black focus:outline-none focus:ring-0 ' +
@@ -38,6 +45,9 @@ const labelClass = 'block text-sm font-medium tracking-wide uppercase mb-2'
 const EMPTY_FORM: FormData = { name: '', email: '', phone: '', storeId: '', preferred_date: '' }
 
 export default function RegistrationForm() {
+  const [stores, setStores] = useState<Store[]>([])
+  const [storesLoading, setStoresLoading] = useState(true)
+
   const [form, setForm] = useState<FormData>(EMPTY_FORM)
   const [errors, setErrors] = useState<FormErrors>({})
   const [isDuplicateEmail, setIsDuplicateEmail] = useState(false)
@@ -47,6 +57,17 @@ export default function RegistrationForm() {
 
   const firstInputRef = useRef<HTMLInputElement>(null)
   const today = new Date().toISOString().split('T')[0]
+
+  useEffect(() => {
+    fetch('/api/stores')
+      .then(r => r.json())
+      .then(setStores)
+      .catch(() => {})
+      .finally(() => setStoresLoading(false))
+  }, [])
+
+  const bkkStores = stores.filter(s => s.region === 'bkk')
+  const otherStores = stores.filter(s => s.region === 'other')
 
   function setField(key: keyof FormData) {
     return (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -82,7 +103,7 @@ export default function RegistrationForm() {
       return
     }
 
-    const selectedStore = ALL_STORES.find(s => s.id === form.storeId)
+    const selectedStore = stores.find(s => s.id === form.storeId)
     if (!selectedStore) {
       setErrors({ storeId: 'กรุณาเลือกสาขา' })
       return
@@ -206,14 +227,19 @@ export default function RegistrationForm() {
               className={inputClass}
               value={form.storeId}
               onChange={setField('storeId')}
+              disabled={storesLoading}
             >
-              <option value="">-- เลือกสาขา --</option>
-              <optgroup label="กรุงเทพฯ และปริมณฑล">
-                {STORES_BKK.map(s => <option key={s.id} value={s.id}>{s.display}</option>)}
-              </optgroup>
-              <optgroup label="ต่างจังหวัด">
-                {STORES_OTHER.map(s => <option key={s.id} value={s.id}>{s.display}</option>)}
-              </optgroup>
+              <option value="">{storesLoading ? 'กำลังโหลด...' : '-- เลือกสาขา --'}</option>
+              {bkkStores.length > 0 && (
+                <optgroup label="กรุงเทพฯ และปริมณฑล">
+                  {bkkStores.map(s => <option key={s.id} value={s.id}>{s.display}</option>)}
+                </optgroup>
+              )}
+              {otherStores.length > 0 && (
+                <optgroup label="ต่างจังหวัด">
+                  {otherStores.map(s => <option key={s.id} value={s.id}>{s.display}</option>)}
+                </optgroup>
+              )}
             </select>
             {errors.storeId && <p className="text-xs text-[#cc0000] mt-1">{errors.storeId}</p>}
           </div>
@@ -237,7 +263,7 @@ export default function RegistrationForm() {
 
           <button
             type="submit"
-            disabled={loading}
+            disabled={loading || storesLoading}
             className="w-full bg-black text-white py-4 text-base font-medium tracking-wide uppercase
               hover:bg-[#333333] focus:outline-black disabled:opacity-50 transition-colors"
           >
