@@ -3,9 +3,9 @@ import { sql } from '@/lib/db'
 
 export async function GET() {
   const { rows } = await sql`
-    SELECT id, branch, province, display, region
+    SELECT id, branch, province, display
     FROM stores
-    ORDER BY region ASC, display ASC
+    ORDER BY display ASC
   `
   return NextResponse.json(rows)
 }
