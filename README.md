@@ -131,3 +131,30 @@ od-eyeevent/
 
 ---
 
+## What I'd improve with more time
+
+### Security & Access
+- Add authentication on `/admin` route (NextAuth or Vercel Auth)
+  so only HR/People Analytics team can access registration data
+- Add rate limiting on `/api/register` to prevent spam submissions
+
+### Performance
+- Cache `/api/stores` response at the edge (`revalidate = 3600`)
+  currently fetches from Postgres on every request —
+  store data rarely changes so 1-hour cache would reduce DB load significantly
+
+### User Experience
+- Email confirmation sent to customer after successful registration
+  confirming their name, selected branch, and preferred date
+- Add footer with OWNDAYS Thailand contact info,
+  social links (Facebook, LINE), and store locator link
+
+### Data & Analytics
+- Pagination on admin table for large datasets
+- GROUP BY province in addition to branch for regional insights
+- Date range filter on admin dashboard (not just single date)
+- Export filtered data by date range, not just current view
+
+### Infrastructure
+- Unit tests for all API routes
+- Input sanitization middleware on all POST endpoints
