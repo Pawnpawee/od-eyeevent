@@ -3,10 +3,13 @@
 Registration landing page for OWNDAYS Thailand's free eye-exam event.
 Two routes, one Vercel deployment, one unified black/white/gray design language.
 
+This visit link: https://od-eyeevent.vercel.app/
+
 | Route | Audience | Purpose |
 |---|---|---|
 | `/` | Customers (public) | Register for a free eye-exam appointment |
 | `/admin` | HR / People Analytics | View registrations, stats, export data |
+
 
 ---
 
