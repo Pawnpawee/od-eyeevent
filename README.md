@@ -50,15 +50,8 @@ ADMIN_PASSWORD=your_admin_password_here
 Vercel Postgres + KV variables are injected automatically from the Vercel dashboard.
 `ADMIN_PASSWORD` must be set manually — it gates the `/admin` route.
 
-### 3. Run the database migration
-Start the dev server, then visit once:
-```
-http://localhost:3000/api/migrate
-```
-Creates `stores` + `registrations` tables and seeds all 25 stores.
-**Delete `app/api/migrate/` before deploying to production.**
 
-### 4. Run the dev server
+### 3. Run the dev server
 ```bash
 npm run dev
 ```
@@ -94,9 +87,9 @@ od-eyeevent/
 │       ├── StoreChart.tsx              → Horizontal bar chart by branch
 │       └── ExportButton.tsx            → SheetJS .xlsx download
 ├── lib/
-│   ├── db.ts                           → Vercel Postgres client singleton
-│   └── stores.ts                       → Static store data (seed source)
-└── .env.local                          → secrets (never commit)
+    ├── db.ts                           → Vercel Postgres client singleton
+    └── stores.ts                       → Static store data (seed source)
+
 ```
 
 ---
@@ -115,21 +108,8 @@ od-eyeevent/
 - `POST /api/admin-auth` validates server-side
 - Session stored in `sessionStorage` — survives page refresh, clears on tab close
 
-### Design
-- Both pages use the same palette: `#000`, `#ffffff`, `#f5f5f5`, `#e0e0e0`, `#666666`
-- Signature element: concentric hairline circles in the hero (optometry lens reference)
-- Heroicons throughout (`/24/outline`)
-
 ---
 
-
-## Security Notes
-
-- All DB queries use parameterized tagged template literals (no SQL injection risk)
-- Admin password validated server-side — never exposed in client bundle
-- Input validated on both client and server sides
-
----
 
 ## What I'd improve with more time
 
