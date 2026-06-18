@@ -139,9 +139,19 @@ od-eyeevent/
 - Add rate limiting on `/api/register` to prevent spam submissions
 
 ### Performance
+- Optimization unuse code
 - Cache `/api/stores` response at the edge (`revalidate = 3600`)
   currently fetches from Postgres on every request —
   store data rarely changes so 1-hour cache would reduce DB load significantly
+- Dynamic imports for heavy components to reduce initial bundle size
+  e.g. `next/dynamic` for Recharts (chart library) and SheetJS (export)
+  since admin dashboard is not the primary page, load them only when needed
+```ts
+  const StoreChart = dynamic(() => import('@/components/admin/StoreChart'), {
+    loading: () => Loading chart...
+  })
+  const ExportButton = dynamic(() => import('@/components/admin/ExportButton'))
+```
 
 ### User Experience
 - Email confirmation sent to customer after successful registration
