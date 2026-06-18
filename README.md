@@ -1,36 +1,133 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# OWNDAYS Eye Event — Landing Page
+
+Registration landing page for OWNDAYS Thailand's free eye-exam event.
+Two routes, one Vercel deployment, one unified black/white/gray design language.
+
+| Route | Audience | Purpose |
+|---|---|---|
+| `/` | Customers (public) | Register for a free eye-exam appointment |
+| `/admin` | HR / People Analytics | View registrations, stats, export data |
+
+---
+
+## Stack
+
+| Layer | Choice |
+|---|---|
+| Framework | Next.js 14 (App Router, TypeScript) |
+| Deploy | Vercel |
+| Database | Vercel Postgres (Neon) |
+| Visit counter | Vercel KV (Redis) |
+| Chart | Recharts |
+| Export | SheetJS (`xlsx`) |
+| Styling | Tailwind CSS v4 |
+| Font | Anuphan (Google Fonts — Thai + Latin) |
+| Icons | Heroicons (`@heroicons/react/24/outline`) |
+
+---
 
 ## Getting Started
 
-First, run the development server:
-
+### 1. Install dependencies
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Set up environment variables
+Create `.env.local` in the project root (never commit this file):
+```bash
+POSTGRES_URL=
+POSTGRES_PRISMA_URL=
+POSTGRES_URL_NON_POOLING=
+POSTGRES_USER=
+POSTGRES_HOST=
+POSTGRES_PASSWORD=
+POSTGRES_DATABASE=
+KV_REST_API_URL=
+KV_REST_API_TOKEN=
+ADMIN_PASSWORD=your_admin_password_here
+```
+Vercel Postgres + KV variables are injected automatically from the Vercel dashboard.
+`ADMIN_PASSWORD` must be set manually — it gates the `/admin` route.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Run the database migration
+Start the dev server, then visit once:
+```
+http://localhost:3000/api/migrate
+```
+Creates `stores` + `registrations` tables and seeds all 25 stores.
+**Delete `app/api/migrate/` before deploying to production.**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 4. Run the dev server
+```bash
+npm run dev
+```
+- Landing page: [http://localhost:3000](http://localhost:3000)
+- Admin dashboard: [http://localhost:3000/admin](http://localhost:3000/admin)
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+od-eyeevent/
+├── app/
+│   ├── page.tsx                        → Landing page (customer)
+│   ├── admin/page.tsx                  → Admin dashboard (Server Component)
+│   ├── api/
+│   │   ├── register/route.ts           → POST: save registration
+│   │   ├── registrations/route.ts      → GET: all registrations
+│   │   ├── stores/route.ts             → GET: store list from DB
+│   │   ├── pageviews/route.ts          → GET/POST: visit counter
+│   │   ├── admin-auth/route.ts         → POST: validate admin password
+│   │   └── migrate/route.ts            → GET: dev-only DB setup (delete before deploy)
+│   ├── layout.tsx                      → Root layout, Anuphan font
+│   └── globals.css                     → Tailwind base + overrides
+├── components/
+│   ├── HeroSection.tsx                 → Logo, headline, lens-circle decoration
+│   ├── RegistrationForm.tsx            → 6-field form with province→branch cascade
+│   ├── SuccessMessage.tsx              → Modal shown after successful registration
+│   └── admin/
+│       ├── AdminAuthGate.tsx           → Client-side password gate
+│       ├── StatsCards.tsx              → Total regs, page views, top store
+│       ├── RegistrationsTable.tsx      → Filterable table + export button
+│       ├── StoreChart.tsx              → Horizontal bar chart by branch
+│       └── ExportButton.tsx            → SheetJS .xlsx download
+├── lib/
+│   ├── db.ts                           → Vercel Postgres client singleton
+│   └── stores.ts                       → Static store data (seed source)
+└── .env.local                          → secrets (never commit)
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Key Implementation Details
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Registration form
+- Province → Branch cascade: selecting province filters branch dropdown
+- Phone auto-formatted as `0xx-xxx-xxxx`; dashes stripped before DB insert
+- Email field strips non-email characters on input
+- Duplicate email returns 409 → shown inline under the email field
+- Success shows a modal overlay; on close, form resets and focus returns
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Admin auth
+- Password stored in `ADMIN_PASSWORD` env var only (never in client code)
+- `POST /api/admin-auth` validates server-side
+- Session stored in `sessionStorage` — survives page refresh, clears on tab close
+
+### Design
+- Both pages use the same palette: `#000`, `#ffffff`, `#f5f5f5`, `#e0e0e0`, `#666666`
+- Signature element: concentric hairline circles in the hero (optometry lens reference)
+- Heroicons throughout (`/24/outline`)
+
+---
+
+
+## Security Notes
+
+- All DB queries use parameterized tagged template literals (no SQL injection risk)
+- Admin password validated server-side — never exposed in client bundle
+- Input validated on both client and server sides
+
+---
+

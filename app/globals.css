@@ -4,16 +4,6 @@
   --font-sans: 'Anuphan', sans-serif;
 }
 
-/* Kill Tailwind's default blue focus ring globally */
-* {
-  --tw-ring-color: #000000;
-}
-
-/* Admin pages override — blue ring */
-.admin-scope * {
-  --tw-ring-color: #007bff;
-}
-
 /* Remove browser default blue outline on inputs */
 input:focus,
 select:focus,
