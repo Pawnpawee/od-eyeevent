@@ -45,7 +45,7 @@ export default function StoreChart({ registrations }: StoreChartProps) {
           <Tooltip
             contentStyle={{ border: '1px solid #e0e0e0', borderRadius: 0, fontSize: 12 }}
             cursor={{ fill: '#f5f5f5' }}
-            formatter={(value: number) => [value, 'Registrations']}
+            formatter={(value) => [value ?? 0, 'Registrations']}
           />
           <Bar dataKey="count" fill="#000000" radius={0} />
         </BarChart>
