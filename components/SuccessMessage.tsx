@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { CheckIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 interface SuccessMessageProps {
   branch: string
@@ -31,42 +32,51 @@ export default function SuccessMessage({ branch, preferredDate, onClose }: Succe
 
   return (
     <div
-      className="fixed inset-0 bg-black/40 flex items-center justify-center z-50"
+      className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
       aria-hidden="false"
     >
       <div
         role="dialog"
         aria-modal="true"
         aria-labelledby="success-title"
-        className="bg-white border border-black w-full max-w-sm mx-4 p-8 relative rounded-none"
+        className="bg-white border border-black w-full max-w-sm mx-4 p-10 relative rounded-none"
       >
+        {/* Close button */}
         <button
           onClick={onClose}
           aria-label="ปิด"
-          className="absolute top-4 right-4 text-black hover:text-[#333333] leading-none"
+          className="absolute top-4 right-4 text-[#999999] hover:text-black transition-colors cursor-pointer"
         >
-          ×
+          <XMarkIcon className="w-5 h-5" />
         </button>
 
-        <div className="flex flex-col items-center gap-4">
-          <p className="text-4xl font-light text-black">✓</p>
+        <div className="flex flex-col items-center gap-5">
 
-          <h2 id="success-title" className="text-xl font-medium text-black text-center">
-            ลงทะเบียนสำเร็จแล้ว
-          </h2>
+          {/* Check icon in thin bordered circle */}
+          <div className="w-14 h-14 rounded-full border border-black flex items-center justify-center">
+            <CheckIcon className="w-6 h-6 text-black" strokeWidth={1.5} />
+          </div>
 
-          <p className="text-sm text-[#666666] text-center">
-            {branch}<br />
-            {formatDate(preferredDate)}
-          </p>
+          <div className="text-center">
+            <h2 id="success-title" className="text-lg font-medium text-black mb-1">
+              ลงทะเบียนสำเร็จแล้ว
+            </h2>
+            <p className="text-xs tracking-[0.2em] uppercase text-[#aaaaaa]">Registration Complete</p>
+          </div>
+
+          <div className="w-full border-t border-[#e0e0e0] pt-5 text-center">
+            <p className="text-sm font-medium text-black">{branch}</p>
+            <p className="text-sm text-[#666666] mt-1">{formatDate(preferredDate)}</p>
+          </div>
 
           <button
             ref={okRef}
             onClick={onClose}
-            className="bg-black text-white w-full py-3 text-sm tracking-widest uppercase hover:bg-[#333333] rounded-none mt-2"
+            className="bg-black text-white w-full py-3 text-xs tracking-widest uppercase hover:bg-[#333333] rounded-none cursor-pointer transition-colors mt-1"
           >
-            OK
+            ปิด
           </button>
+
         </div>
       </div>
     </div>
