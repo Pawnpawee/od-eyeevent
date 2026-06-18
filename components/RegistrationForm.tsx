@@ -56,7 +56,11 @@ export default function RegistrationForm() {
   const [submittedData, setSubmittedData] = useState<SubmittedData | null>(null)
 
   const firstInputRef = useRef<HTMLInputElement>(null)
-  const today = new Date().toISOString().split('T')[0]
+  const [today, setToday] = useState('')
+
+  useEffect(() => {
+    setToday(new Date().toISOString().split('T')[0])
+  }, [])
 
   useEffect(() => {
     fetch('/api/stores')
@@ -90,7 +94,7 @@ export default function RegistrationForm() {
     if (!form.storeId) e.storeId = 'กรุณาเลือกสาขา'
 
     if (!form.preferred_date) e.preferred_date = 'กรุณาเลือกวันที่'
-    else if (form.preferred_date < today) e.preferred_date = 'กรุณาเลือกวันที่ในอนาคต'
+    else if (today && form.preferred_date < today) e.preferred_date = 'กรุณาเลือกวันที่ในอนาคต'
 
     return e
   }
@@ -249,7 +253,7 @@ export default function RegistrationForm() {
             <input
               id="preferred_date"
               type="date"
-              min={today}
+              min={today || undefined}
               className={inputClass}
               value={form.preferred_date}
               onChange={setField('preferred_date')}
@@ -265,7 +269,7 @@ export default function RegistrationForm() {
             type="submit"
             disabled={loading || storesLoading}
             className="w-full bg-black text-white py-4 text-base font-medium tracking-wide uppercase
-              hover:bg-[#333333] focus:outline-black disabled:opacity-50 transition-colors"
+              hover:bg-[#333333] focus:outline-black disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer transition-colors"
           >
             {loading ? 'กำลังส่ง...' : 'ลงทะเบียน'}
           </button>
