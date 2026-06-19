@@ -9,6 +9,7 @@ This visit link: https://od-eyeevent.vercel.app/
 |---|---|---|
 | `/` | Customers (public) | Register for a free eye-exam appointment |
 | `/admin` | HR / People Analytics | View registrations, stats, export data |
+password for now test is 1234
 
 
 ---
