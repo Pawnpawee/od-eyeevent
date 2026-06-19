@@ -131,6 +131,33 @@ od-eyeevent/
 
 ---
 
+## AI Usage
+
+Used Claude (Anthropic) as a code-generation assistant. I handled all design, architecture, and decision-making; AI handled the typing under my direction.
+
+**My responsibilities:**
+- Analyzed the brief and defined two deliverables (customer landing page + admin analyst view)
+- Studied OWNDAYS's actual website to set the visual direction — warm neutral palette, Anuphan font, no blue
+- Chose the full stack (Next.js 14, Vercel Postgres, KV, Recharts, SheetJS, Tailwind v4)
+- Designed the system architecture: API routes, DB schema, province→branch cascade, session-based admin auth
+- Created the 8-step build plan to sequence each piece in the right order
+- Reviewed all generated code, tested locally, and fixed issues myself — e.g. validation edge cases, responsive breakpoints, TypeScript type errors
+
+**What AI generated under my direction:**
+- Component and API route code, following my file structure and architecture
+- Tailwind markup and responsive layouts based on my design tokens
+- Chart config (Recharts) and export logic (SheetJS) based on my data shape
+- SQL migration script based on my schema design
+
+**Workflow per step:**
+1. I gave AI specific context — which file, what it does, which patterns to follow
+2. AI generated the code
+3. I reviewed, tested, and either approved or rewrote the parts that didn't work
+4. Next step only after the current one was solid
+
+AI accelerated the coding; the decisions, structure, and quality control were mine.
+
+---
 
 ## What I'd improve with more time
 
@@ -169,3 +196,7 @@ od-eyeevent/
 ### Infrastructure
 - Unit tests for all API routes
 - Input sanitization middleware on all POST endpoints
+
+---
+
+
