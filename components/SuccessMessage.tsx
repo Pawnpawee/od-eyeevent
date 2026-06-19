@@ -32,20 +32,20 @@ export default function SuccessMessage({ branch, preferredDate, onClose }: Succe
 
   return (
     <div
-      className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+      className="fixed inset-0 bg-ink/50 flex items-center justify-center z-50"
       aria-hidden="false"
     >
       <div
         role="dialog"
         aria-modal="true"
         aria-labelledby="success-title"
-        className="bg-white border border-black w-full max-w-sm mx-4 p-10 relative rounded-none"
+        className="bg-white border border-ink w-full max-w-sm mx-4 p-10 relative rounded-none"
       >
         {/* Close button */}
         <button
           onClick={onClose}
           aria-label="ปิด"
-          className="absolute top-4 right-4 text-[#999999] hover:text-black transition-colors cursor-pointer"
+          className="absolute top-4 right-4 text-drift hover:text-ink transition-colors cursor-pointer"
         >
           <XMarkIcon className="w-5 h-5" />
         </button>
@@ -53,26 +53,26 @@ export default function SuccessMessage({ branch, preferredDate, onClose }: Succe
         <div className="flex flex-col items-center gap-5">
 
           {/* Check icon in thin bordered circle */}
-          <div className="w-14 h-14 rounded-full border border-black flex items-center justify-center">
-            <CheckIcon className="w-6 h-6 text-black" strokeWidth={1.5} />
+          <div className="w-14 h-14 rounded-full border border-ink flex items-center justify-center">
+            <CheckIcon className="w-6 h-6 text-ink" strokeWidth={1.5} />
           </div>
 
           <div className="text-center">
-            <h2 id="success-title" className="text-lg font-medium text-black mb-1">
+            <h2 id="success-title" className="text-lg font-medium text-ink mb-1">
               ลงทะเบียนสำเร็จแล้ว
             </h2>
-            <p className="text-xs tracking-[0.2em] uppercase text-[#aaaaaa]">Registration Complete</p>
+            <p className="text-xs tracking-[0.2em] uppercase text-drift">Registration Complete</p>
           </div>
 
-          <div className="w-full border-t border-[#e0e0e0] pt-5 text-center">
-            <p className="text-sm font-medium text-black">{branch}</p>
-            <p className="text-sm text-[#666666] mt-1">{formatDate(preferredDate)}</p>
+          <div className="w-full border-t border-stone pt-5 text-center">
+            <p className="text-sm font-medium text-ink">{branch}</p>
+            <p className="text-sm text-ash mt-1">{formatDate(preferredDate)}</p>
           </div>
 
           <button
             ref={okRef}
             onClick={onClose}
-            className="bg-black text-white w-full py-3 text-xs tracking-widest uppercase hover:bg-[#333333] rounded-none cursor-pointer transition-colors mt-1"
+            className="bg-ink text-cream w-full py-3 text-xs tracking-widest uppercase hover:bg-char rounded-none cursor-pointer transition-colors mt-1"
           >
             ปิด
           </button>

@@ -39,8 +39,8 @@ export default function ExportButton({ data }: ExportButtonProps) {
     <button
       onClick={handleExport}
       disabled={data.length === 0}
-      className="flex items-center gap-2 bg-black text-white px-4 py-2 text-xs tracking-widest uppercase
-        hover:bg-[#333333] disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer transition-colors"
+      className="flex items-center gap-2 bg-char text-cream px-4 py-2 text-xs tracking-widest uppercase
+        hover:bg-ink disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer transition-colors rounded-[4px]"
     >
       <ArrowDownTrayIcon className="w-4 h-4" />
       Export .xlsx ({data.length})

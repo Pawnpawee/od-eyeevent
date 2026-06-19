@@ -14,11 +14,11 @@ interface CardProps {
 
 function Card({ label, value, icon }: CardProps) {
   return (
-    <div className="bg-white border border-[#e0e0e0] p-6 flex items-start gap-4">
-      <div className="text-[#666666] mt-1">{icon}</div>
+    <div className="bg-sand border border-stone p-6 flex items-start gap-4">
+      <div className="text-drift mt-1">{icon}</div>
       <div>
-        <p className="text-xs font-medium text-[#666666] uppercase tracking-[0.15em] mb-1">{label}</p>
-        <p className="text-4xl font-medium text-black leading-none">{value}</p>
+        <p className="text-xs font-medium text-drift uppercase tracking-[0.15em] mb-1">{label}</p>
+        <p className="text-4xl font-medium text-ink leading-none">{value}</p>
       </div>
     </div>
   )

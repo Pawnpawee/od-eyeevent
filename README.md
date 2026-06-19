@@ -1,7 +1,7 @@
 # OWNDAYS Eye Event — Landing Page
 
 Registration landing page for OWNDAYS Thailand's free eye-exam event.
-Two routes, one Vercel deployment, one unified black/white/gray design language.
+Two routes, one Vercel deployment, one unified warm neutral design language.
 
 This visit link: https://od-eyeevent.vercel.app/
 
@@ -26,6 +26,24 @@ This visit link: https://od-eyeevent.vercel.app/
 | Styling | Tailwind CSS v4 |
 | Font | Anuphan (Google Fonts — Thai + Latin) |
 | Icons | Heroicons (`@heroicons/react/24/outline`) |
+
+---
+
+## Design System
+
+Warm neutral color ramp — zero blue on either page.
+
+| Token | Hex | Usage |
+|---|---|---|
+| Ink | `#1a1917` | Headlines, borders, CTA buttons, primary text |
+| White | `#ffffff` | Page bg, card bg |
+| Cream | `#faf9f7` | Landing form section bg, button text |
+| Sand | `#f0efec` | Admin page bg, stat cards, table headers |
+| Stone | `#d6d3cd` | Input borders, dividers, card borders |
+| Drift | `#a8a49d` | Icons, placeholders, metadata labels |
+| Ash | `#6b6860` | Sublines, secondary text |
+| Char | `#3d3b37` | Button hover, admin buttons |
+| Clay | `#b44c3a` | Error messages only |
 
 ---
 

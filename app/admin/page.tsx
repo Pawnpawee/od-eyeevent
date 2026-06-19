@@ -31,10 +31,10 @@ export default async function AdminPage() {
 
   return (
     <AdminAuthGate>
-    <div className="min-h-screen bg-[#f5f5f5]">
+    <div className="min-h-screen bg-sand">
 
       {/* Header */}
-      <header className="bg-white border-b border-[#e0e0e0] px-6 py-4 flex items-center justify-between">
+      <header className="bg-white border-b border-stone px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <Link href="/" className="cursor-pointer">
             <Image
@@ -47,10 +47,10 @@ export default async function AdminPage() {
               className="hover:opacity-70 transition-opacity"
             />
           </Link>
-          <span className="text-[#e0e0e0] select-none">|</span>
-          <h1 className="text-sm font-medium text-black uppercase tracking-[0.15em]">Dashboard</h1>
+          <span className="text-stone select-none">|</span>
+          <h1 className="text-sm font-medium text-ink uppercase tracking-[0.15em]">Dashboard</h1>
         </div>
-        <span className="text-xs text-[#666666] uppercase tracking-[0.15em]">Internal</span>
+        <span className="text-xs text-drift uppercase tracking-[0.15em]">Internal</span>
       </header>
 
       {/* Main */}
@@ -65,7 +65,7 @@ export default async function AdminPage() {
         <StoreChart registrations={registrations as Registration[]} />
 
         <div>
-          <p className="text-xs font-medium text-[#666666] uppercase tracking-[0.15em] mb-4">
+          <p className="text-xs font-medium text-drift uppercase tracking-[0.15em] mb-4">
             All Registrations
           </p>
           <RegistrationsTable registrations={registrations as Registration[]} />

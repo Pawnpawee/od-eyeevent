@@ -7,7 +7,7 @@ export default function HeroSection() {
       {/* Lens circle — optometry reference, the signature element */}
       <div
         aria-hidden="true"
-        className="absolute rounded-full border border-[#ececec] pointer-events-none"
+        className="absolute rounded-full border border-stone pointer-events-none"
         style={{
           width: "min(88vw, 680px)",
           height: "min(88vw, 680px)",
@@ -18,7 +18,7 @@ export default function HeroSection() {
       />
       <div
         aria-hidden="true"
-        className="absolute rounded-full border border-[#f4f4f4] pointer-events-none"
+        className="absolute rounded-full border border-cream pointer-events-none"
         style={{
           width: "min(60vw, 460px)",
           height: "min(60vw, 460px)",
@@ -44,24 +44,24 @@ export default function HeroSection() {
           </Link>
         </div>
 
-        <p className="text-[10px] tracking-[0.3em] uppercase text-[#aaaaaa] mb-7 font-normal">
+        <p className="text-[10px] tracking-[0.3em] uppercase text-drift mb-7 font-normal">
           Free Eye Exam &nbsp;·&nbsp; Thailand
         </p>
 
-        <h1 className="text-3xl md:text-5xl font-medium tracking-tight leading-snug mb-6">
+        <h1 className="text-3xl md:text-5xl font-medium tracking-tight leading-snug mb-6 text-ink">
           ตรวจวัดสายตาฟรี
           <br />
           จองคิวเลยวันนี้
         </h1>
 
-        <p className="text-base md:text-lg font-light text-[#666666]">
+        <p className="text-base md:text-lg font-light text-ash">
           มองชัดขึ้น ใช้ชีวิตได้เต็มที่ขึ้น
           <br />
           ลงทะเบียนเลือกสาขาและวันที่สะดวก
           <br className="2xl:hidden" /> OWNDAYS พร้อมดูแลคุณ
         </p>
 
-        <div className="mt-10 w-10 h-px bg-[#cccccc]" />
+        <div className="mt-10 w-10 h-px bg-stone" />
       </div>
     </header>
   );

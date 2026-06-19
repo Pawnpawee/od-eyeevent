@@ -2,6 +2,23 @@
 
 @theme {
   --font-sans: 'Anuphan', sans-serif;
+
+  /* Warm neutral palette */
+  --color-ink:   #1a1917;
+  --color-cream: #faf9f7;
+  --color-sand:  #f0efec;
+  --color-stone: #d6d3cd;
+  --color-drift: #a8a49d;
+  --color-ash:   #6b6860;
+  --color-char:  #3d3b37;
+  --color-clay:  #b44c3a;
+  --color-moss:  #5a7a5e;
+  --color-ochre: #c4973b;
+}
+
+/* Ring color references palette so it stays in sync */
+* {
+  --tw-ring-color: var(--color-ink);
 }
 
 /* Remove browser default blue outline on inputs */

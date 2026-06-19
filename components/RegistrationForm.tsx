@@ -53,15 +53,15 @@ function formatPhone(raw: string): string {
 }
 
 const baseInput =
-  "w-full border border-[#e0e0e0] rounded-none py-3 text-black text-base " +
-  "hover:border-[#999999] focus:border-black focus:outline-none focus:ring-0 " +
-  "placeholder:text-[#666666] bg-white disabled:opacity-50";
+  "w-full border border-stone rounded-none py-3 text-ink text-base " +
+  "hover:border-drift focus:border-ink focus:outline-none focus:ring-0 " +
+  "placeholder:text-drift bg-white disabled:opacity-50";
 
 const iconInputClass = baseInput + " pl-11 pr-4";
 const selectClass = iconInputClass + " cursor-pointer";
 
 const labelClass =
-  "block text-xs font-medium tracking-[0.15em] uppercase text-[#666666] mb-2";
+  "block text-xs font-medium tracking-[0.15em] uppercase text-ash mb-2";
 
 const EMPTY_FORM: FormData = {
   name: "",
@@ -225,7 +225,7 @@ export default function RegistrationForm() {
         />
       )}
 
-      <section className="py-16 px-6 md:px-12 bg-[#f5f5f5]">
+      <section className="py-16 px-6 md:px-12 bg-cream">
         <form
           onSubmit={handleSubmit}
           noValidate
@@ -237,7 +237,7 @@ export default function RegistrationForm() {
               ชื่อ-นามสกุล
             </label>
             <div className="relative">
-              <UserIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#aaaaaa] pointer-events-none" />
+              <UserIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-drift pointer-events-none" />
               <input
                 ref={firstInputRef}
                 id="name"
@@ -249,7 +249,7 @@ export default function RegistrationForm() {
               />
             </div>
             {errors.name && (
-              <p className="text-xs text-[#cc0000] mt-1">{errors.name}</p>
+              <p className="text-xs text-clay mt-1">{errors.name}</p>
             )}
           </div>
 
@@ -259,7 +259,7 @@ export default function RegistrationForm() {
               อีเมล
             </label>
             <div className="relative">
-              <EnvelopeIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#aaaaaa] pointer-events-none" />
+              <EnvelopeIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-drift pointer-events-none" />
               <input
                 id="email"
                 type="email"
@@ -270,7 +270,7 @@ export default function RegistrationForm() {
               />
             </div>
             {isDuplicateEmail ? (
-              <div className="text-xs text-[#cc0000] mt-1 space-y-0.5">
+              <div className="text-xs text-clay mt-1 space-y-0.5">
                 <p>อีเมลนี้ได้ลงทะเบียนไว้แล้ว</p>
                 <p>หากต้องการเปลี่ยนสาขาหรือวันที่ กรุณาติดต่อเราได้ที่</p>
                 <p>📧 contact@owndays.com</p>
@@ -278,7 +278,7 @@ export default function RegistrationForm() {
                 <p>📞 02-xxx-xxxx</p>
               </div>
             ) : errors.email ? (
-              <p className="text-xs text-[#cc0000] mt-1">{errors.email}</p>
+              <p className="text-xs text-clay mt-1">{errors.email}</p>
             ) : null}
           </div>
 
@@ -288,7 +288,7 @@ export default function RegistrationForm() {
               เบอร์โทรศัพท์
             </label>
             <div className="relative">
-              <PhoneIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#aaaaaa] pointer-events-none" />
+              <PhoneIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-drift pointer-events-none" />
               <input
                 id="phone"
                 type="tel"
@@ -300,7 +300,7 @@ export default function RegistrationForm() {
               />
             </div>
             {errors.phone && (
-              <p className="text-xs text-[#cc0000] mt-1">{errors.phone}</p>
+              <p className="text-xs text-clay mt-1">{errors.phone}</p>
             )}
           </div>
 
@@ -310,7 +310,7 @@ export default function RegistrationForm() {
               จังหวัด
             </label>
             <div className="relative">
-              <MapPinIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#aaaaaa] pointer-events-none z-10" />
+              <MapPinIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-drift pointer-events-none z-10" />
               <select
                 id="province"
                 className={selectClass}
@@ -329,7 +329,7 @@ export default function RegistrationForm() {
               </select>
             </div>
             {errors.province && (
-              <p className="text-xs text-[#cc0000] mt-1">{errors.province}</p>
+              <p className="text-xs text-clay mt-1">{errors.province}</p>
             )}
           </div>
 
@@ -339,7 +339,7 @@ export default function RegistrationForm() {
               สาขาที่สะดวก
             </label>
             <div className="relative">
-              <BuildingStorefrontIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#aaaaaa] pointer-events-none z-10" />
+              <BuildingStorefrontIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-drift pointer-events-none z-10" />
               <select
                 id="store"
                 className={selectClass}
@@ -358,7 +358,7 @@ export default function RegistrationForm() {
               </select>
             </div>
             {errors.storeId && (
-              <p className="text-xs text-[#cc0000] mt-1">{errors.storeId}</p>
+              <p className="text-xs text-clay mt-1">{errors.storeId}</p>
             )}
           </div>
 
@@ -382,26 +382,26 @@ export default function RegistrationForm() {
                 className="absolute right-3 top-1/2 -translate-y-1/2 z-20 p-1 cursor-pointer flex items-center justify-center"
                 onClick={() => dateInputRef.current?.showPicker()}
               >
-                <CalendarDaysIcon className="w-4 h-4 text-[#aaaaaa]" />
+                <CalendarDaysIcon className="w-4 h-4 text-drift" />
               </div>
             </div>
             {errors.preferred_date && (
-              <p className="text-xs text-[#cc0000] mt-1">
+              <p className="text-xs text-clay mt-1">
                 {errors.preferred_date}
               </p>
             )}
           </div>
 
           {serverError && (
-            <p className="text-xs text-[#cc0000]">{serverError}</p>
+            <p className="text-xs text-clay">{serverError}</p>
           )}
 
           <button
             type="submit"
             disabled={loading || storesLoading}
-            className="w-full bg-black text-white py-4 text-sm font-medium tracking-widest uppercase
+            className="w-full bg-ink text-cream py-4 text-sm font-medium tracking-widest uppercase
               flex items-center justify-center gap-3
-              hover:bg-[#333333] focus:outline-black disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer transition-colors mt-1"
+              hover:bg-char focus:outline-ink disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer transition-colors mt-1"
           >
             <span>{loading ? "กำลังส่ง..." : "ลงทะเบียน"}</span>
             {!loading && <ArrowLongRightIcon className="w-5 h-5" />}

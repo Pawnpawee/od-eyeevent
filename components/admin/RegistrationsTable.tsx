@@ -19,8 +19,8 @@ interface RegistrationsTableProps {
   registrations: Registration[]
 }
 
-const thClass = 'text-xs font-medium text-[#666666] uppercase tracking-[0.12em] px-4 py-3 text-left whitespace-nowrap'
-const tdClass = 'text-sm text-black px-4 py-3 whitespace-nowrap'
+const thClass = 'text-xs font-medium text-drift uppercase tracking-[0.12em] px-4 py-3 text-left whitespace-nowrap'
+const tdClass = 'text-sm text-ink px-4 py-3 whitespace-nowrap'
 
 function formatDate(val: unknown) {
   if (!val) return '—'
@@ -30,8 +30,8 @@ function formatDate(val: unknown) {
 }
 
 const filterControlClass =
-  'border border-[#e0e0e0] text-black text-sm px-3 py-2 bg-white cursor-pointer ' +
-  'hover:border-[#999999] focus:border-black focus:ring-1 focus:ring-black focus:outline-none'
+  'border border-stone text-ink text-sm px-3 py-2 bg-white cursor-pointer ' +
+  'hover:border-drift focus:border-char focus:ring-1 focus:ring-char focus:outline-none'
 
 export default function RegistrationsTable({ registrations }: RegistrationsTableProps) {
   const [filterBranch, setFilterBranch] = useState('')
@@ -56,11 +56,11 @@ export default function RegistrationsTable({ registrations }: RegistrationsTable
   }, [registrations, filterBranch, filterDate])
 
   return (
-    <div className="bg-white border border-[#e0e0e0]">
+    <div className="bg-white border border-stone">
 
       {/* Filter bar */}
-      <div className="flex flex-wrap items-center gap-3 p-4 border-b border-[#e0e0e0]">
-        <FunnelIcon className="w-4 h-4 text-[#666666]" />
+      <div className="flex flex-wrap items-center gap-3 p-4 border-b border-stone">
+        <FunnelIcon className="w-4 h-4 text-drift" />
         <select
           className={filterControlClass}
           value={filterBranch}
@@ -78,7 +78,7 @@ export default function RegistrationsTable({ registrations }: RegistrationsTable
         {(filterBranch || filterDate) && (
           <button
             onClick={() => { setFilterBranch(''); setFilterDate('') }}
-            className="text-xs text-[#666666] hover:text-black underline underline-offset-2 cursor-pointer transition-colors"
+            className="text-xs text-ash hover:text-ink underline underline-offset-2 cursor-pointer transition-colors"
           >
             Clear
           </button>
@@ -91,7 +91,7 @@ export default function RegistrationsTable({ registrations }: RegistrationsTable
       {/* Table */}
       <div className="overflow-x-auto">
         <table className="w-full">
-          <thead className="bg-[#f5f5f5] border-b border-[#e0e0e0]">
+          <thead className="bg-sand border-b border-stone">
             <tr>
               <th className={thClass}>#</th>
               <th className={thClass}>ชื่อ-นามสกุล</th>
@@ -106,7 +106,7 @@ export default function RegistrationsTable({ registrations }: RegistrationsTable
           <tbody>
             {filtered.length === 0 ? (
               <tr>
-                <td colSpan={8} className="text-center text-sm text-[#666666] py-12">
+                <td colSpan={8} className="text-center text-sm text-ash py-12">
                   ไม่พบข้อมูล
                 </td>
               </tr>
@@ -114,16 +114,16 @@ export default function RegistrationsTable({ registrations }: RegistrationsTable
               filtered.map((r, i) => (
                 <tr
                   key={r.id}
-                  className="border-b border-[#e0e0e0] hover:bg-[#f5f5f5] transition-colors"
+                  className="border-b border-stone hover:bg-cream transition-colors"
                 >
-                  <td className={tdClass + ' text-[#666666]'}>{i + 1}</td>
+                  <td className={tdClass + ' text-drift'}>{i + 1}</td>
                   <td className={tdClass + ' font-medium'}>{r.name}</td>
                   <td className={tdClass}>{r.email}</td>
                   <td className={tdClass}>{r.phone}</td>
                   <td className={tdClass}>{r.province}</td>
                   <td className={tdClass}>{r.branch}</td>
                   <td className={tdClass}>{formatDate(r.preferred_date)}</td>
-                  <td className={tdClass + ' text-[#666666]'}>
+                  <td className={tdClass + ' text-drift'}>
                     {new Date(r.created_at).toLocaleString('th-TH', { dateStyle: 'short', timeStyle: 'short' })}
                   </td>
                 </tr>
@@ -133,7 +133,7 @@ export default function RegistrationsTable({ registrations }: RegistrationsTable
         </table>
       </div>
 
-      <div className="px-4 py-3 border-t border-[#e0e0e0] text-xs text-[#666666]">
+      <div className="px-4 py-3 border-t border-stone text-xs text-drift">
         แสดง {filtered.length} จาก {registrations.length} รายการ
       </div>
     </div>

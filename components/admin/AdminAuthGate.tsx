@@ -46,8 +46,8 @@ export default function AdminAuthGate({ children }: { children: React.ReactNode 
   if (authed) return <>{children}</>
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5] flex items-center justify-center px-4">
-      <div className="bg-white border border-[#e0e0e0] w-full max-w-sm p-10">
+    <div className="min-h-screen bg-sand flex items-center justify-center px-4">
+      <div className="bg-white border border-stone w-full max-w-sm p-10">
 
         <div className="flex justify-center mb-10">
           <Image
@@ -61,15 +61,15 @@ export default function AdminAuthGate({ children }: { children: React.ReactNode 
         </div>
 
         <div className="flex items-center gap-2 mb-6">
-          <LockClosedIcon className="w-4 h-4 text-[#666666]" />
-          <p className="text-xs font-medium text-black uppercase tracking-[0.2em]">Admin Access</p>
+          <LockClosedIcon className="w-4 h-4 text-drift" />
+          <p className="text-xs font-medium text-ink uppercase tracking-[0.2em]">Admin Access</p>
         </div>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div>
             <label
               htmlFor="admin-password"
-              className="block text-xs font-medium text-[#666666] uppercase tracking-[0.15em] mb-2"
+              className="block text-xs font-medium text-ash uppercase tracking-[0.15em] mb-2"
             >
               Password
             </label>
@@ -81,17 +81,17 @@ export default function AdminAuthGate({ children }: { children: React.ReactNode 
                 value={input}
                 onChange={e => { setInput(e.target.value); setError(false) }}
                 placeholder="••••"
-                className={`w-full border px-4 py-3 pr-11 text-sm text-black bg-white rounded-none
+                className={`w-full border px-4 py-3 pr-11 text-sm text-ink bg-white rounded-none
                   focus:outline-none focus:ring-0
                   ${error
-                    ? 'border-[#cc0000] focus:border-[#cc0000]'
-                    : 'border-[#e0e0e0] hover:border-[#999999] focus:border-black'
+                    ? 'border-clay focus:border-clay'
+                    : 'border-stone hover:border-drift focus:border-ink'
                   }`}
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(p => !p)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-[#999999] hover:text-black cursor-pointer transition-colors"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-drift hover:text-ink cursor-pointer transition-colors"
                 aria-label={showPassword ? 'Hide password' : 'Show password'}
               >
                 {showPassword
@@ -101,14 +101,14 @@ export default function AdminAuthGate({ children }: { children: React.ReactNode 
               </button>
             </div>
             {error && (
-              <p className="text-xs text-[#cc0000] mt-1">รหัสผ่านไม่ถูกต้อง</p>
+              <p className="text-xs text-clay mt-1">รหัสผ่านไม่ถูกต้อง</p>
             )}
           </div>
 
           <button
             type="submit"
-            className="w-full bg-black text-white py-3 text-xs font-medium uppercase tracking-widest
-              hover:bg-[#333333] transition-colors cursor-pointer"
+            className="w-full bg-ink text-cream py-3 text-xs font-medium uppercase tracking-widest
+              hover:bg-char transition-colors cursor-pointer"
           >
             เข้าสู่ระบบ
           </button>
